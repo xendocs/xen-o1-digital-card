@@ -1,0 +1,487 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000;
+    overflow: hidden;
+}
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.card {
+    position: relative;
+    width: 380px;
+    padding: 50px 40px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 15, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    overflow: hidden;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(60deg, 
+        rgba(149, 0, 255, 0.2), 
+        rgba(0, 187, 255, 0.2), 
+        rgba(0, 255, 187, 0.2));
+    transform: rotate(-45deg);
+    pointer-events: none;
+    filter: blur(30px);
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 25px;
+    padding: 1px;
+    background: linear-gradient(45deg, #8A2BE2, #00BFFF, #00FFD1);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo h1 {
+    font-size: 42px;
+    background: linear-gradient(90deg, #8A2BE2, #00BFFF, #00FFD1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
+    animation: shimmer 3s infinite;
+    background-size: 200% auto;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.info {
+    text-align: center;
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.info::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #8A2BE2, #00BFFF);
+    border-radius: 2px;
+}
+
+.info h2 {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    background: linear-gradient(90deg, #e1e1e1, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+.info p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+    background: linear-gradient(90deg, rgba(138, 43, 226, 0.8), rgba(0, 191, 255, 0.8));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.social-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: rgba(20, 20, 30, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #8A2BE2, #00BFFF);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.social-icon:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.social-icon:hover::before {
+    opacity: 1;
+}
+
+.contact-button {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.contact-button a {
+    display: inline-block;
+    padding: 14px 40px;
+    background: linear-gradient(45deg, #8A2BE2, #00BFFF);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.contact-button a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #00BFFF, #8A2BE2);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.contact-button a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.contact-button a:hover::before {
+    opacity: 1;
+}
+
+.contact-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.contact-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    position: relative;
+    width: 320px;
+    padding: 50px 35px;
+    border-radius: 25px;
+    background: rgba(15, 15, 25, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8) translateY(30px);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow: hidden;
+}
+
+.popup-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 25px;
+    padding: 2px;
+    background: linear-gradient(45deg, #8A2BE2, #00BFFF, #00FFD1);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.popup-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(60deg, 
+        rgba(149, 0, 255, 0.1), 
+        rgba(0, 187, 255, 0.1), 
+        rgba(0, 255, 187, 0.1));
+    transform: rotate(-45deg);
+    pointer-events: none;
+    filter: blur(30px);
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.contact-popup.active .popup-content {
+    transform: scale(1) translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.close-btn:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(90deg);
+}
+
+.popup-content h3 {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    background: linear-gradient(90deg, #8A2BE2, #00BFFF, #00FFD1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.contact-number {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 18px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUp 0.5s forwards;
+    animation-delay: calc(var(--i) * 0.1s);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.contact-number:last-child {
+    margin-bottom: 0;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-number:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.contact-number::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #8A2BE2, #00BFFF);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.contact-number:hover::before {
+    opacity: 1;
+}
+
+.contact-number i {
+    color: #00BFFF;
+    font-size: 20px;
+    margin-right: 18px;
+    transition: all 0.4s ease;
+}
+
+.contact-number:hover i {
+    transform: scale(1.2);
+    color: #8A2BE2;
+}
+
+.contact-number span {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.contact-number:hover span {
+    color: rgba(255, 255, 255, 1);
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 90%;
+        padding: 40px 25px;
+    }
+    
+    .logo h1 {
+        font-size: 36px;
+    }
+    
+    .info h2 {
+        font-size: 20px;
+    }
+    
+    .info p {
+        font-size: 14px;
+    }
+    
+    .social-links {
+        gap: 20px;
+    }
+    
+    .social-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .contact-button a {
+        padding: 12px 30px;
+    }
+}
+
+@media (max-height: 700px) {
+    .card {
+        padding: 30px 25px;
+    }
+    
+    .logo {
+        margin-bottom: 25px;
+    }
+    
+    .info {
+        margin-bottom: 25px;
+    }
+    
+    .social-links {
+        margin-bottom: 25px;
+    }
+} 
